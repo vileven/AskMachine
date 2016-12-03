@@ -1,0 +1,45 @@
+<div class="question container col-md-12">
+    <div class="row">
+        <div class="col-xs-2 question-user-column">
+            <div class="avatar">
+{#                            <img src="/public/img/avatar_example.jpg" alt="..." width="100" class="img-circle">#}
+                <img src="{% url 'home' %}{{ question.author.avatar }}" alt="..." width="100" class="img-circle">
+            </div>
+            <div class="input-group input-group-xs likes">
+                <span>
+                    <a href="#" class="btn btn-secondary" type="button">
+                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                    </a>
+                    <span class="likes" id="like-post">266</span>
+                    <a href="#" class="btn btn-secondary" type="button">
+                        <i class="glyphicon glyphicon-thumbs-down"></i>
+                    </a>
+                    <span class="like" id="dislike-post">4</span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-8 col-xs-offset-1 question-field">
+            <div class="question-topic">
+                <a href="{{ question.get_absolute_url }}" class="thread-topic">{{ question.title }}</a>
+            </div>
+            <div class="question-body">
+                <p>
+                    {{ question.text }}
+                </p>
+                <div class="row">
+                    <div class="qs-answer ">
+                        <a href="#">Answers <span class="badge">{{ question.count_answers }}</span></a>
+                    </div>
+                    <div class=" qs-tags">
+                        <span>Tags: </span>
+                        {% for tag in question.get_tags %}
+                            <a href="{% url 'tags' slug=tag.name %}"><span>{{ tag.name }}</span></a>
+{#                                      <a href=""><span>Python</span></a>#}
+{#                                        <a href=""><span>Hypothesis</span></a>#}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

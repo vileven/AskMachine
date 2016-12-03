@@ -1,0 +1,20 @@
+[
+  {
+    "model":"qa.Answer",
+    "fields": {
+      "text": "In the case of the correlation matrix, I remind you, it is symmetrical. So, as you will know, spectral and singular value decomposition of symmetric matrix are the same. As for the second question, there is a theorem in linear algebra that the right singular vectors of any matrix are eigenvectors of product of this matrix by the transposed matrix. Product of this matrix by the transposed matrix is the correlation matrix!",
+      "author": 3,
+      "added_at": "2016-11-12",
+      "question": 14
+    }
+  },
+  {
+    "model":"qa.Answer",
+    "fields": {
+      "text": "Andrew, It's so easy! Thank you.",
+      "author": 4,
+      "added_at": "2016-11-12",
+      "question": 14
+    }
+  }
+]

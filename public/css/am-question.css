@@ -1,0 +1,15 @@
+#ask-btn {
+	color: #fff;
+	background-color: #222;
+	width: 20%;
+	font-weight: bolder;
+	font-size: 1.5em;
+}
+
+.am-ques-topic {
+	margin-bottom: 15px;
+}
+
+.main-content {
+	min-height: 500px;
+}

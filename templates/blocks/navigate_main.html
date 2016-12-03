@@ -1,0 +1,19 @@
+
+<div id="ask-nav-qstns">
+
+    {% if page.method == 'hot' %}
+
+        <ul class="nav nav-tabs">
+                <li><a href="{% url 'home' %}">New</a></li>
+                <li class="active"><a href="{% url 'popular_home' %}">Popular</a></li>
+        </ul>
+
+    {% else %}
+
+        <ul class="nav nav-tabs">
+                <li class="active"><a href="{% url 'home' %}">New</a></li>
+                <li><a href="{% url 'popular_home' %}">Popular</a></li>
+        </ul>
+
+    {% endif %}
+</div>

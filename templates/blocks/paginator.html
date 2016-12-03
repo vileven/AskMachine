@@ -1,0 +1,35 @@
+<nav aria-label="Page navigation">
+    <ul class="pagination am-pagination">
+        <li>
+            {% if page.number == 1 %}
+                <a href="{{ paginator.baseurl }}{{ page.number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            {% else %}
+                <a href="{{ paginator.baseurl }}{{ page.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            {% endif %}
+        </li>
+        {% for p in paginator.page_range %}
+            {% if p == page.number %}
+                <li class="active">
+            {% else %}
+                <li>
+            {% endif %}
+    <a href="{{ paginator.baseurl }}{{ p }}">{{ p }}</a>
+</li>
+{% endfor %}
+        <li>
+            {% if page.number == paginator.num_pages %}
+                <a href="{{ paginator.baseurl }}{{ paginator.num_pages }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            {% else %}
+                <a href="{{ paginator.baseurl }}{{ page.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>

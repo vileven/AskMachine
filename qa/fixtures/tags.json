@@ -1,0 +1,41 @@
+[
+  {
+    "model":"qa.Tag",
+    "pk": 1,
+    "fields": {
+      "name": "Logistic Regression",
+      "counts": 10,
+      "question": [2, 3, 4]
+    }
+  },
+
+  {
+    "model":"qa.Tag",
+    "pk": 2,
+    "fields": {
+      "name": "PCA",
+      "counts": 5,
+      "question": [2, 3, 14, 10, 8]
+    }
+  },
+
+  {
+    "model":"qa.Tag",
+    "pk": 3,
+    "fields": {
+      "name": "Python",
+      "counts": 6,
+      "question": [3, 1, 14, 9, 7, 4]
+    }
+  },
+
+  {
+    "model":"qa.Tag",
+    "pk": 4,
+    "fields": {
+      "name": "LDA",
+      "counts": 5,
+      "question": [2, 4, 12, 11,3 , 5, 7]
+    }
+  }
+]

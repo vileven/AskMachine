@@ -1,0 +1,93 @@
+[
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Vladimir Gourenko"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Sergey Peshkov"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Andrew Ng"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Evgenia Nevtrinosova"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Dmitriy Smal"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Ivan Ivanod"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Petr the Great"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Hillary Clinton"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Vladimir Putin"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Sergey Barsukov"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Alexandr Makedonskiy"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "fields": {
+      "username": "Nurkamil Nishanbaev"
+    }
+  },
+
+  {
+    "model":"auth.User",
+    "pk":4,
+    "fields": {
+      "username": "Sergey Volodin"
+    }
+  }
+]

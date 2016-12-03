@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ask</title>
+  
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/ask_main.css" rel="stylesheet">
+	<link href="css/am-login.css" rel="stylesheet">
+</head>
+<body>
+  <!-- header -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+	    <div class="header container-fluid">
+	    	<div>
+		    	<div class="navbar-header nav navbar-left">
+		    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		    			<span class="sr-only">Toggle navigation</span>
+	            		<span class="icon-bar"></span>
+		            	<span class="icon-bar"></span>
+		            	<span class="icon-bar"></span>
+		    		</button>
+		        	<a href="#" class="logo navbar-brand" id="logo-nav">
+		          		<img src="css/img/am_logo.png"  height="50">
+		        	</a>
+		        	<a class="navbar-brand"  href="#">
+		          		<span id="brand-name">AskMachine</span>
+		          		<!-- <span class="brand-slogan">asked, learning, will done</span> -->
+		        	</a>
+		        	    
+		          	<!-- <a href="#" class="navbar-brand btn btn-default am-ask-btn">Ask</a> -->
+		    	</div>
+
+
+
+		    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    		
+					<ul class="nav navbar-nav navbar-right">
+			          	<li><a href="#">Log in</a></li>
+			          	<li class="dropdown">
+					        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+					        <ul class="dropdown-menu">
+						        <li><a href="#">Action</a></li>
+						        <li><a href="#">Another action</a></li>
+						       	<li><a href="#">Something else here</a></li>
+						       	<li role="separator" class="divider"></li>
+						       	<li><a href="#">Separated link</a></li>
+				            </ul>
+			          	</li>
+			        </ul>
+
+			    	<ul class="nav navbar-right">
+			    		<li>
+				          	<form class="navbar-form navbar-left am-form-search" role="search">
+				              	<input type="text" class="form-control header-search-input" placeholder="Search">
+				              	<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
+				          	</form>
+			          	</li>
+			    	</ul>
+			    	<ul class="nav navbar-right navbar-nav ">
+		        		<li>
+		        			<form class="navbar-form navbar-left " role="search">
+		          				<button type="ask" class="btn btn-default am-ask-btn">Ask</button>
+		          			</form>
+		          		</li>
+		          	</ul>
+			    </div>
+		    </div>
+	    </div><!-- /.container-fluid -->
+  	</nav>
+  <!-- /header -->
+  <!-- content -->
+	<div class="container">
+	    <div class="row">
+	      	<div class="col-md-8 col-xs-8 main-content">
+	        	<div class="am-topic">
+	        		<h2>Log in</h2>
+	        	</div>
+	        	<div class="alert alert-danger alert-dismissable">
+		        	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		        	<strong>Incorrect</strong> login or password
+	        	</div>
+	        	<div class="row">
+		        	<form class="col-sm-10">
+						<div class="form-group ">
+							<label for="exampleInputEmail1">Email address</label>
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Password</label>
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						</div>
+						<!-- <div class="form-group">
+							<label for="exampleInputFile">File input</label>
+							<input type="file" id="exampleInputFile">
+							<p class="help-block">Example block-level help text here.</p>
+						</div> -->
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"> Remember me
+						    </label>
+						</div>
+						<button type="submit" class="am-btn btn btn-default">Submit</button>
+					</form>
+				</div>
+	        </div>
+
+	        <div class="col-sm-offset-1 col-sm-3 right-menu ">
+	        	<div class="tags">
+	          		<div class="tags-header">
+	            		<span><h2>Popular TAGS</h2></span>
+	          		</div>
+	          		<div class="tags-content">
+			            <a href="#"><span>Learning network</span></a>
+			            <a href="#"><span>PCA</span></a>
+			            <a href="#"><span>Python</span></a>
+			            <a href="#"><span>MATLAB</span></a>
+			            <a href="#"><span>LDA</span></a>
+			            <a href="#"><span>Hypothesis</span></a>
+			            <a href="#"><span>Logistic regression</span></a>
+			            <a href="#"><span>Cost</span></a>
+	          		</div>
+	        	</div>
+	        	<div class="member-online">
+	        		<span><h2>Members ONLINE</h2></span>
+	        		<ul class="list-unstyled">
+		        		<li><a href="#">Volodin Sergey</a></li>
+		        		<li><a href="#">Peshkov Serge</a></li>
+		        		<li><a href="#">Salyip Bogdan</a></li>
+	        		</ul>
+	        	</div>
+	        	<div class="member-top">
+	        		<span><h2>TOP Members</h2></span>
+		        	<ul class="list-unstyled">
+		        		<li><a href="#">Andew Ng</a></li>
+		        		<li><a href="#">Piphagor</a></li>
+		        		<li><a href="#">Alexandr Makarevich</a></li>
+		        		<li><a href="#">Volodin Sergey</a></li>
+		        	</ul>
+	        	</div>
+	        </div>
+	   	</div>
+
+
+		
+	</div>
+  <!-- /content -->
+  <!-- footer -->
+  	<footer class=" ">
+  	<div class="container">
+    	<div class="row">
+      		<div class="col-sm-4">
+        		<h3>About us</h3>
+        		<ul class="list-unstyled">
+          			<li>
+            			<a href="#">Why AskMachine?</a>
+          			</li>
+          			<li>
+            			<a href="#">Contacts</a>
+          			</li>
+          			<li>
+            			<a href="#">Privacy</a>
+          			</li>
+        		</ul>
+      		</div>
+      		<div class="col-sm-4">
+    			<h3>Help</h3>
+    			<ul class="list-unstyled">
+			        <li>
+			            <a href="#">What is machine learning?</a>
+			        </li>
+			        <li>
+			          	<a href="#">How to register?</a>
+			        </li>
+			        <li>
+			            <a href="#">How to ask </a>
+			        </li>
+			        <li>
+			          	<a href="#">How to login to your account?</a>
+			        </li>
+        		</ul>
+      		</div>
+      		<div class="col-sm-4">
+        		<h3>Social newtorks</h3>
+    			<ul class="list-unstyled">
+		          	<li>
+		            	<a href="#">VK</a>
+		          	</li>
+		          	<li>
+		            	<a href="#">Facebook</a>
+		          	</li>
+		          	<li>
+		            	<a href="#">Twitter</a>
+		          	</li>
+        		</ul>
+      		</div>
+    	</div>
+    </div>
+  	</footer>
+  <!-- /footer -->
+
+
+
+
+	<script src="js/jquery-3.1.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-3.1.1.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

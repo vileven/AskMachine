@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include 'blocks/navigate_main.html' %}
+        {% for question in questions %}
+            {% include "blocks/question_short.html" %}
+        {% endfor %}
+{% endblock %}
+{% block right-menu %}
+{% include "blocks/right-menu.html" %}
+{% endblock %}
+
+{% block paginate %}
+    {% include "blocks/paginator.html" %}
+{% endblock %}

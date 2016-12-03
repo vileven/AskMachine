@@ -1,0 +1,36 @@
+
+
+    {% if answers %}
+
+        {% for answer in answers %}
+            <div class="am-answer container-fluid">
+
+            <div class="col-sm-4">
+                <div class="am-answer-user">
+                    <div class="avatar">
+                        <img src="../../{{ answer.author.avatar }}" alt="..." width="50" class="img-circle">
+                    </div>
+                    <div class="nickname">
+                        <a href="#">{{ answer.author }}</a>
+                    </div>
+                </div>
+
+                {% include "blocks/likes.html" %}
+
+            </div>
+            <div class="col-sm-8 am-answer-body">
+                <p>
+
+                    {{ answer.text }}
+
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-sm-8 am-answer-empty-body">
+                <p>
+        No answers :(
+                </p>
+            </div>
+    {% endif %}

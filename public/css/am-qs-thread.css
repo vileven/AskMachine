@@ -1,0 +1,82 @@
+.am-qs-main, .am-answers {
+	background-color: #fff;
+	/*border: 1px solid black;*/
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+	padding: 10px;
+	margin-top: 15px;
+}
+
+.am-answers {
+	margin-top: 20px;
+	/*border: 1px solid black;*/
+}
+
+.am-answers .likes a {
+	width: 10px;
+}
+
+.am-answers .likes a i {
+	background-size: cover;
+}
+
+.am_qs_container {
+	/*min-width: 1000px;*/
+	/*margin-left: 100px;*/
+}
+
+.question-body {
+	font-size: 1.1em;
+	color: #111;
+}
+
+.nickname {
+	margin-top: 5px;
+	text-align: center;
+}
+
+.am-answers .avatar {
+	float: left;
+}
+
+.am-answers .avatar img {
+	left: 0px;
+}
+
+.am-answer-user {
+	min-width: 200px;
+
+}
+
+.am-answers .nickname {
+	position: relative;
+	left: 5px;
+	margin: 0;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 50px;
+}
+
+.am-answer {
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.am-write-answer {
+	padding: 0px;
+	margin-top: 20px;
+
+	/*border: 1px solid black;*/
+}
+
+.am-write-answer .form-group textarea, .am-write-answer .form-group .am-btn {
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+}
+
+.am-answer-empty-body {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-style: italic;
+}

@@ -1,0 +1,32 @@
+<div class="am-topic">
+    <h2>Registration</h2>
+</div>
+{% for e in form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissable ">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ e }}
+    </div>
+{% endfor %}
+<div class="row">
+    <form class="form-horizontal" method="POST" action="/signup/">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group
+                {% if field.errors %} has-error{% endif %}">
+                <label class="col-sm-3 control-label">
+                    {{ field.label }}
+                </label>
+                <div class="col-sm-9 controls">
+                    {% include "widgets/input.html" %}
+                </div>
+            </div>
+        {% endfor %}
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-3">
+                <button type="submit" id="reg-btn" class="am-btn btn btn-default btn-lg">Register!</button>
+            </div>
+        </div>
+    </form>
+</div>

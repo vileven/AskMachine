@@ -1,0 +1,278 @@
+body {
+	font-size: 14px;
+  padding: 0px;
+  padding-top: 70px;
+  /*padding-bottom: 20vh;*/
+  /*height: 1000px;*/
+  background-image: url('../img/background3.png');
+  background-size: cover;
+  background-attachment: fixed;
+  /*min-width: 100px;*/
+}
+#ask-nav-qstns {
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+	padding: 10px;
+}
+nav {
+	height: 60px;
+	/*min-width: 700px;*/
+}
+
+.collapse {
+	background-color: #f8f8f8;
+
+}
+
+.am-form-search {
+	/*margin-left: auto;*/
+	/*margin-right: 100px;*/
+	width: 400px;
+	/*padding-left: 150px;*/
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.navbar-brand {
+	position: relative;
+}
+
+#brand-name {
+	color: black;
+}
+
+
+.brand-slogan {
+	color: #777;
+	font-size: 0.5em;
+	position: relative;
+	top: 10px;
+	left: -65px;
+	vertical-align: bottom;
+}
+
+
+#logo-nav {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-left: 20px;
+}
+
+.header-search-input {
+	display: inline-block;
+	width: 70%;
+}
+
+.test {
+	background-color: #ccc;
+}
+
+.am-ask-btn {
+	/*margin-top: 10px;*/
+	background-color: #222;
+	color: #fff;
+	font-weight: bolder;
+	/*padding-top: 15px;*/
+	/*margin-top: 5px;*/
+	/*margin-bottom: 10px;*/
+	/*display: inline;*/
+	/*height: 20px;*/
+}
+
+.am-ask-btn:hover {
+	background-color: #ccc ;
+	color: #222;
+}
+
+.main-content {
+	padding-left: 15px;
+}
+
+
+./*tags*/ {
+	font-size: 1.2em;
+}
+
+.tags-content {
+	word-spacing: 5px;
+}
+
+.tags-content  span {
+	word-spacing: normal;
+	font-weight: bolder;
+	/*color: #800080;*/
+	text-decoration: underline;
+	white-space: nowrap;
+}
+
+
+
+.tags-content a:nth-child(2n + 1) span {
+	/*color: #911E42;*/
+}
+
+
+.avatar img{
+	position: relative;
+	left: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.question {
+	/*background-color: #fff;*/
+	border-radius: 15px;
+}
+
+.question-topics {
+	padding-left: 7%; 
+	margin-bottom: 20px;
+	font-size: 1.5em;
+}
+
+.question-topics .label {
+	border-radius: 15px;
+}
+
+.question-user-column {
+	min-width: 110px;
+	/*border: 2px solid black;*/
+	max-width: 200px;
+}
+
+.user-rating {
+	/*border: 1px solid grey;*/
+	padding: 5px;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.user-rating::after {
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.likes {
+	/*float: left;*/
+	height: 10px;
+	min-width: 140px;
+	/*border: 1px solid black;*/
+}
+
+.question {
+	margin-top: 20px;
+	/*min-width: 350px;*/
+	background-color: #fff;
+	/*border: 1px solid black;*/
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+	padding: 10px;
+}
+
+.thread-topic {
+	}
+
+.question-topic {
+	color:#075E89;
+	font-weight: bolder;
+	font-size: 1.5em;
+	text-decoration: underline;
+	margin-bottom: 5px;
+
+}
+
+.question-field {
+	/*color: #fff;*/
+	min-width: 150px;
+	/*margin-left: 15px;*/
+	/*background-color: #efedec;*/
+	border-radius: 20px;
+}
+
+.question-body p{
+	margin-bottom: 20px;
+}
+
+.qs-answer {
+	margin-left: 15px;
+	margin-right: 15px;
+	display: inline-block;
+}
+
+.qs-tags {
+	display: inline-block;
+}
+
+.qs-tags a  span {
+	color: #222;
+	text-decoration: underline;
+	font-weight: bolder;
+}
+
+.right-menu div {
+	margin-bottom: 30px;
+}
+
+.am-pagination li a{
+	color: #222222;
+}
+
+.am-pagination li.active > a{
+	background-color: #222;
+	color: #fff;
+}
+
+footer {
+	/*display: block;*/
+	color: #fff;
+	/*width: 100%;*/
+    position: relative;
+    bottom: 0;
+    /*margin: 0;*/
+    background-color: #222;
+    margin-top: 35px;
+    margin-bottom: 0px;
+    padding: 0px;
+    /*width: 80%;*/
+    /*height: 21vh; */
+}
+
+footer a {
+	color: #999;
+	font-size: 1.2em;
+}
+
+footer a:hover {
+	color: #fff;
+}
+
+footer .row {
+	padding: 5px;
+	/*margin-left: 15px;*/
+	padding-left: 15px;
+	padding-bottom: 20px;
+}
+
+a {
+	color: #222;
+}
+
+a:hover {
+	color: #000;
+	/*font-weight: bolder;*/
+}
+
+.member-online a, .member-top a{
+	color: #123;
+}
+
+.am-btn {
+	background-color: #222;
+	color: #fff;
+	font-weight: bold;
+}

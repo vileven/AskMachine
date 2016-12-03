@@ -1,0 +1,19 @@
+<div class="tags">
+    <div class="tags-header">
+        <span><h2>Popular TAGS</h2></span>
+    </div>
+    <div class="tags-content">
+        {% for tag in popular_tags %}
+            <a href="{% url 'tags' slug=tag.name %}"><span>{{ tag.name }}</span></a>
+        {% endfor %}
+
+    </div>
+</div>
+<div class="member-top">
+    <span><h2>TOP Members</h2></span>
+    <ul class="list-unstyled">
+        {% for person in best_members %}
+            <li><a href="#">{{ person }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

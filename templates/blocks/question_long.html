@@ -1,0 +1,43 @@
+<div class="am-qs-main container col-xs-11">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="avatar">
+
+                <img src="../../{{ question.author.avatar }}" alt="..." width="100" class="img-circle">
+
+            </div>
+            <div class="nickname">
+                <a href="#">{{ question.author }}</a>
+            </div>
+
+            {% include "blocks/likes.html" %}
+
+        </div>
+        <div class="am_qs_container col-lg-8">
+            <div class="question-topic">
+                <a href="#1" class="thread-topic">
+                    {{ question.title }}
+                </a>
+            </div>
+            <div class="question-body">
+                <p>
+
+                    {{  question.text }}
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class=" qs-tags">
+            <span>Tags: </span>
+
+            {% for tag in question.get_tags %}
+
+                <a href="{% url 'tags' slug=tag.name %}"><span>{{ tag.name }}</span></a>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>

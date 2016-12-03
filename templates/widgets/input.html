@@ -1,0 +1,9 @@
+<input
+        maxlength="{{ field.field.max_length }}"
+        type="{% if field.field.widget.input_type != None %}{{ field.field.widget.input_type }}{% endif %}"
+        class="form-control "
+        name="{{ field.name }}"
+        id="am-ask-{{ field.name }}"
+        placeholder="{% if field.help_text %}{{ field.help_text }}{% endif %}"
+        {% if field.required %} required {% endif %}
+>
