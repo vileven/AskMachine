@@ -62,16 +62,18 @@ class AnswerForm(forms.Form):
 
 class SignUpForm(forms.Form):
     login = forms.CharField(label='Login', help_text='Your Login, max – 100 characters',
-                            max_length=100)
-    email = forms.EmailField(label='Email', help_text='example@mail.com', max_length=30)
+                            max_length=100, widget=forms.TextInput, required=False)
+
+    email = forms.EmailField(label='Email', help_text='example@mail.com', max_length=30,
+                             widget=forms.EmailInput, required=False)
     password = forms.CharField(label="Password", min_length=5, max_length=30,
                                help_text='5 to 30 characters, one digit and one letter',
-                               widget=forms.PasswordInput)
-    password.type = 'password'
+                               widget=forms.PasswordInput, required=False)
+    # password.type = 'password'
 
     password_again = forms.CharField(label='Repeat password', min_length=5, max_length=30,
                                      help_text='password again',
-                                     widget=forms.PasswordInput)
+                                     widget=forms.PasswordInput, required=True)
 
     def clean_login(self):
         login = self.cleaned_data['login']
@@ -91,11 +93,13 @@ class SignUpForm(forms.Form):
         password = self.cleaned_data['password']
         if password.strip() == '':
             raise forms.ValidationError('Password is empty', code='validation_error')
+
         return password
 
     def clean(self):
         if self.cleaned_data.get("password") != self.cleaned_data.get("password_again"):
             raise forms.ValidationError("Password mismatch!")
+
         return self.cleaned_data
 
     def save(self):
@@ -109,7 +113,8 @@ class SignUpForm(forms.Form):
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    user = None
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -123,9 +128,15 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('Password is empty', code='validation_error')
         return password
 
-    def save(self):
+    def clean(self):
         user = authenticate(**self.cleaned_data)
-        return user
+        if user is None:
+            raise forms.ValidationError("Wrong login or password, try again!", code='validation_error')
+        self.user = user
+        return self.cleaned_data
+
+    def save(self):
+        return self.user
 
 
 

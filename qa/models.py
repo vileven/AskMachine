@@ -20,6 +20,11 @@ class ProfileManager(models.Manager):
             exists = False
         return exists
 
+    def get_profile(self, user):
+        if user.is_anonymous():
+            return None
+        return self.get(user=user)
+
 
 class Profile(models.Model):
     objects = ProfileManager()

@@ -9,3 +9,8 @@
 .main-content {
 	min-height: 500px;
 }
+
+.error_field {
+	color: #a94442;
+	font-weight: 700;
+}

@@ -9,12 +9,12 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotModified
 from django.views.decorators.http import require_GET, require_POST
 from django.core.urlresolvers import reverse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from qa.models import Answer
 from qa.models import Question
 from qa.models import Profile
-from qa.models import Tag
-from qa.forms import AskForm, AnswerForm, SignUpForm
+from qa.models import Tag, User
+from qa.forms import AskForm, AnswerForm, SignUpForm, LoginForm
 
 
 # Create your views here.
@@ -105,8 +105,19 @@ def question(request, pk):
     }))
 
 
-def profile(request, pk):
-    pass
+def profile(request, name):
+    user = get_object_or_404(User, username=name)
+    prof = Profile.objects.get_profile(user=user)
+    if request.META.get('HTTP_REFERER') == 'http://' + request.META.get('HTTP_HOST') + reverse('signup_page'):
+        return render(request, 'profile.html', mixin({
+            'profile': prof,
+            'text': 'Congretulations!',
+        }))
+    else:
+        return render(request, 'profile.html', mixin({
+            'profile': prof,
+        }))
+
 
 
 def tags(request, slug):
@@ -123,7 +134,18 @@ def tags(request, slug):
 
 
 def login_page(request):
-     return render(request, 'login.html', mixin({}))
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            url = reverse('home')
+            return HttpResponseRedirect(url)
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', mixin({
+        'form': form
+    }))
 
 
 def signup_page(request):
@@ -131,8 +153,10 @@ def signup_page(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            url = reverse('home')
-            return HttpResponseRedirect(url)
+            prof_name = request.POST['login']
+            # prof_name = 'Chelsea'
+            url = reverse('profile_page', kwargs={'name': prof_name})
+            return HttpResponseRedirect(url, {'text': 'r'})
     else:
         form = SignUpForm()
     return render(request, 'signup.html', mixin({
@@ -155,3 +179,9 @@ def ask_question(request):
     return render(request, 'ask_question.html', mixin({
         'form': form
     }))
+
+
+def logout_user(request):
+    logout(request)
+    url = reverse('login_page')
+    return HttpResponseRedirect(url)

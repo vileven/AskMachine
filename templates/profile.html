@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block flash %}
+    {{ text }}
+    {% if text %}
+        {% include 'blocks/flash_success.html' with message=text %}
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+    <img src="{% url 'home' %}{{ profile.avatar }}" alt="..." width="100" class="img-circle">
+    <p>
+        {{ profile.user.username }}
+    </p>
+
+{% endblock %}

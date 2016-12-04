@@ -60,11 +60,18 @@
 	<div class="container">
 	    <div class="row">
 	      	<div class="col-md-8 col-xs-8 main-content">
-                 {% block content %}{% endblock %}
+
+                {% block flash %}{% endblock %}
+                {% block content %}{% endblock %}
+
 	        </div>
 
 	        <div class="col-sm-offset-1 col-sm-3 right-menu ">
-	        	{% block right-menu %}{% endblock %}
+
+	        	{% block right-menu %}
+                    {% include "blocks/right-menu.html" %}
+	        	{% endblock %}
+
 	        </div>
 	   	</div>
         {% block paginate %}{% endblock %}
