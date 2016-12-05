@@ -13,7 +13,7 @@
     <span><h2>TOP Members</h2></span>
     <ul class="list-unstyled">
         {% for person in best_members %}
-            <li><a href="#">{{ person }}</a></li>
+            <li><a href="{% url 'profile_page' name=person %}">{{ person }}</a></li>
         {% endfor %}
     </ul>
 </div>

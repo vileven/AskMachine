@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from qa.views import index, question, profile, index_hot, tags, login_page, signup_page, ask_question, logout_user
+from qa.views import index, question, profile, index_hot, tags, login_page,\
+    signup_page, ask_question, logout_user, profile_edit, question_answer
 from django.views.static import serve
 
 urlpatterns = [
@@ -11,7 +12,9 @@ urlpatterns = [
     url(r'^login/', login_page, name="login_page"),
     url(r'^signup/', signup_page, name="signup_page"),
     url(r'^ask/', ask_question, name="ask_page"),
+    url(r'^profile/edit/', profile_edit, name='profile_edit'),
     url(r'^profile/(?P<name>.*)/', profile, name='profile_page'),
-    url(r'logout/', logout_user, name='logout'),
+    url(r'^logout/', logout_user, name='logout'),
+    url(r'^answer/', question_answer, name='question_answer'),
     # url(r'^popular/', popular_questions, name='popular_questions'),
 ]

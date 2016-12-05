@@ -1,0 +1,25 @@
+<div class="am-write-answer container-fluid col-xs-11">
+    <form class="form-horizontal" method="post" action="/answer/">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="col-sm-12">
+                 <textarea
+                            maxlength="{{ form.text.field.max_length }}"
+                            class="form-control "
+                            name="{{ form.text.name }}"
+                            id="am-answer-{{ form.text.name }}"
+                            placeholder="{% if form.text.help_text %}{{ form.text.help_text }}{% endif %}"
+                            {% if form.text.required %} required {% endif %}
+                            {% if form.text.value %}value="{{ form.text.value }}"{% endif %}
+                            rows="11"
+                        >{% if form.text.value %}{{ form.text.value }}{% endif %}</textarea>
+            </div>
+        </div>
+        {{ form.question }}
+        <div class="form-group">
+            <div class=" col-sm-10">
+                <button type="submit" class="btn btn-default btn-lg am-btn" id="answer-button">Answer</button>
+            </div>
+        </div>
+    </form>
+</div>

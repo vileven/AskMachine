@@ -7,18 +7,12 @@
     </li>
 {% endif %}
 {% if user.is_authenticated == True %}
-    <li>
-        <img src="../../{{ user.avatar }}" alt="..." width="50" class="img-circle">
-    </li>
-    <li>
-            {{ user.username }}
-    </li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.username }} <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="#">My profile</a></li>
+            <li><a href="{% url 'profile_page' name=user.username %}">My profile</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Edit</a></li>
+            <li><a href="{% url 'profile_edit' %}">Edit</a></li>
             <li><a href="#">Help</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="{% url 'logout' %}">Log out</a></li>

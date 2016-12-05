@@ -6,6 +6,14 @@
 
 {% endblock %}
 
+{% block flash %}
+
+    {% if text %}
+        {% include 'blocks/flash_success.html' with message=text %}
+    {% endif %}
+
+{% endblock %}
+
 {% block content %}
     {% include "blocks/login_form.html" %}
 {% endblock %}

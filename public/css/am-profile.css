@@ -1,0 +1,24 @@
+#am-profile-login {
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#am-profile-topic {
+    margin-top: 120px;
+    margin-bottom: 20px;
+}
+
+.am-profile-fields {
+    line-height: 40px;
+    vertical-align: middle;
+    font-size: larger;
+}
+
+.am-profile-fields .col-sm-3 {
+    font-weight: 700;
+}
+
+.am-profile-edit-btn {
+    margin-top: 30px;
+}

@@ -3,11 +3,11 @@
         <div class="col-sm-3">
             <div class="avatar">
 
-                <img src="../../{{ question.author.avatar }}" alt="..." width="100" class="img-circle">
+                <img src="{% url 'home' %}uploads/{{ question.author.avatar }}" alt="..." width="100" height="100" class="img-circle">
 
             </div>
             <div class="nickname">
-                <a href="#">{{ question.author }}</a>
+                <a href="{% url 'profile_page' name=question.author %}">{{ question.author }}</a>
             </div>
 
             {% include "blocks/likes.html" %}

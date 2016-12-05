@@ -29,8 +29,10 @@ class ProfileManager(models.Manager):
 class Profile(models.Model):
     objects = ProfileManager()
     user = models.OneToOneField(User)
-    avatar = models.ImageField(upload_to='avatar/', null=True)
+    about_me = models.TextField(max_length=2000, default="")
+    avatar = models.ImageField(upload_to='avatar/', null=True, default='avatar/default-user-image.png')
     rating = models.IntegerField(default=0)
+    questions_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username
@@ -54,6 +56,7 @@ class Question(models.Model):
     likes = models.ManyToManyField(Profile, related_name="question_like", blank=True)
     dislikes = models.ManyToManyField(Profile, related_name='question_dislike', blank=True)
     count_answers = models.PositiveIntegerField(default=0)
+    short_text = models.TextField(max_length=85, default="")
 
     class Meta:
         ordering = ('-added_at',)
@@ -66,6 +69,11 @@ class Question(models.Model):
 
     def get_absolute_url(self):
         return reverse('question', kwargs={'pk': self.pk})
+
+    @staticmethod
+    def cut_text(text):
+        text = text[:80] + '...'
+        return text
 
 
 class Answer(models.Model):
@@ -92,7 +100,7 @@ class TagsManager(models.Manager):
             tag = Tag(name=tag_name)
             tag.save()
 
-        tag.count += 1
+        tag.counts += 1
         tag.questions.add(question)
         tag.save()
         return tag
@@ -100,7 +108,7 @@ class TagsManager(models.Manager):
 
 class Tag(models.Model):
     objects = TagsManager()
-    question = models.ManyToManyField(Question, blank=True)
+    questions = models.ManyToManyField(Question, blank=True)
     name = models.CharField(max_length=50)
     counts = models.PositiveIntegerField(default=0)
 

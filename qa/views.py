@@ -14,7 +14,7 @@ from qa.models import Answer
 from qa.models import Question
 from qa.models import Profile
 from qa.models import Tag, User
-from qa.forms import AskForm, AnswerForm, SignUpForm, LoginForm
+from qa.forms import AskForm, AnswerForm, SignUpForm, LoginForm, ProfileForm
 
 
 # Create your views here.
@@ -105,13 +105,14 @@ def question(request, pk):
     }))
 
 
-def profile(request, name):
+def profile(request, name, **kwargs):
     user = get_object_or_404(User, username=name)
     prof = Profile.objects.get_profile(user=user)
-    if request.META.get('HTTP_REFERER') == 'http://' + request.META.get('HTTP_HOST') + reverse('signup_page'):
+    if 'success' in request.GET:
+        text = request.GET['success']
         return render(request, 'profile.html', mixin({
             'profile': prof,
-            'text': 'Congretulations!',
+            'text': text,
         }))
     else:
         return render(request, 'profile.html', mixin({
@@ -119,10 +120,28 @@ def profile(request, name):
         }))
 
 
+@login_required
+def profile_edit(request):
+    prof = Profile.objects.get_profile(request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save(prof)
+            url = reverse('profile_page', kwargs={'name': prof.user.username}) + '?success=Every changes saved!'
+            return HttpResponseRedirect(url)
+
+    else:
+        form = ProfileForm.load(prof)
+
+    return render(request, 'edit_profile.html', mixin({
+        'form': form,
+        'profile': prof,
+    }))
+
 
 def tags(request, slug):
     tag = get_object_or_404(Tag, name=slug)
-    questions = tag.question.all()
+    questions = tag.questions.all()
     page, paginator = paginate(request, questions)
     paginator.baseurl = reverse('tags', kwargs={'slug': tag.name}) + '?page='
     return render(request, 'tags_index.html', mixin({
@@ -139,10 +158,29 @@ def login_page(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            url = reverse('home')
+            print(request.GET)
+            if 'next' in request.GET:
+                url = request.GET['next']
+            else:
+                url = reverse('home')
+            print(url)
             return HttpResponseRedirect(url)
     else:
         form = LoginForm()
+
+    if 'success' in request.GET:
+        text = request.GET['success']
+        return render(request, 'login.html', mixin({
+            'form': form,
+            'text': text,
+        }))
+
+    if 'next' in request.GET:
+        return render(request, 'login.html', mixin({
+        'form': form,
+        'next': request.GET['next']
+    }))
+
     return render(request, 'login.html', mixin({
         'form': form
     }))
@@ -155,8 +193,9 @@ def signup_page(request):
             form.save()
             prof_name = request.POST['login']
             # prof_name = 'Chelsea'
-            url = reverse('profile_page', kwargs={'name': prof_name})
-            return HttpResponseRedirect(url, {'text': 'r'})
+            url = reverse('login_page') \
+                  + '?success=Congratulations! Registration completed successfully.'
+            return HttpResponseRedirect(url)
     else:
         form = SignUpForm()
     return render(request, 'signup.html', mixin({
@@ -164,12 +203,12 @@ def signup_page(request):
     }))
 
 
-#@login_required
+@login_required(login_url='/login/')
 def ask_question(request):
     if request.method == 'POST' and request.user.is_authenticated():
         form = AskForm(request.POST)
         if form.is_valid():
-            form._user = request.user
+            form.profile_user = Profile.objects.get_profile(request.user)
             ask = form.save()
             url = reverse('question', args=[ask.id])
             return HttpResponseRedirect(url)
@@ -185,3 +224,15 @@ def logout_user(request):
     logout(request)
     url = reverse('login_page')
     return HttpResponseRedirect(url)
+
+
+@login_required
+def question_answer(request):
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            form.profile_user = Profile.objects.get_profile(request.user)
+            answer = form.save()
+            url = reverse('question', args=[answer.question.id]) + "#answer_" + str(answer.id)
+            return HttpResponseRedirect(url)
+    return HttpResponseRedirect('/')

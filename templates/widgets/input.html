@@ -6,4 +6,5 @@
         id="am-ask-{{ field.name }}"
         placeholder="{% if field.help_text %}{{ field.help_text }}{% endif %}"
         {% if field.required %} required {% endif %}
+        {% if field.value %}value="{{ field.value }}"{% endif %}
 >

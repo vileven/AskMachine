@@ -1,7 +1,12 @@
 {% extends "base.html" %}
+{% block styles %}
+
+    <link href="/public/css/am-profile.css" rel="stylesheet">
+
+{% endblock %}
 
 {% block flash %}
-    {{ text }}
+
     {% if text %}
         {% include 'blocks/flash_success.html' with message=text %}
     {% endif %}
@@ -10,9 +15,6 @@
 
 {% block content %}
 
-    <img src="{% url 'home' %}{{ profile.avatar }}" alt="..." width="100" class="img-circle">
-    <p>
-        {{ profile.user.username }}
-    </p>
+    {% include 'blocks/profile_information.html' %}
 
 {% endblock %}

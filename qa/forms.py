@@ -3,12 +3,13 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from qa.models import Question, Answer, Profile, Tag
+from re import sub
 
 
 class AskForm(forms.Form):
-    title = forms.CharField(max_length=255, help_text='Topic', label='Title')
-    text = forms.CharField(widget=forms.Textarea, help_text='Question body', label='Text')
-    tags = forms.CharField(max_length=255, help_text='for example #ML #regression #NN', label='Tags')
+    title = forms.CharField(max_length=255, help_text='Topic', label='Title', required=False)
+    text = forms.CharField(widget=forms.Textarea, help_text='Question body', label='Text', required=False)
+    tags = forms.CharField(max_length=255, help_text='for example #ML #regression #NN', label='Tags', required=False)
 
     def clean_title(self):
         title = self.cleaned_data['title']
@@ -23,17 +24,24 @@ class AskForm(forms.Form):
         return text
 
     def save(self):
-        self.cleaned_data['author'] = Profile.objects.get(user=self._user)
-        question = Question(**self.cleaned_data)
-        for tag in self.cleaned_data['tags'].strip().split('#'):
-            tag = tag.lower()
-            Tag.objects.add(tag_name=tag, question=question)
+        question = Question(title=self.cleaned_data['title'], text=self.cleaned_data['text'],
+                            author=self.profile_user, short_text=Question.cut_text(self.cleaned_data['text']))
         question.save()
+
+        self.profile_user.questions_count += 1
+        self.profile_user.save()
+
+        tags = self.cleaned_data["tags"].replace(",", " ")
+        tags = sub(r"[^\w\s]", "", tags)
+        tags = sub(r"\s+", " ", tags)
+        for tag in tags.split(" "):
+            Tag.objects.add(tag_name=tag, question=question)
+
         return question
 
 
 class AnswerForm(forms.Form):
-    text = forms.CharField(widget=forms.Textarea)
+    text = forms.CharField(widget=forms.Textarea, help_text='Type your answer')
     question = forms.IntegerField(widget=forms.HiddenInput)
 
     def clean_text(self):
@@ -44,16 +52,18 @@ class AnswerForm(forms.Form):
 
     def clean_question(self):
         question = self.cleaned_data['question']
-        if question == 0:
+        if question <= 0:
             raise forms.ValidationError('Question number incorrect', code='validation_error')
         return question
 
     def save(self):
         self.cleaned_data['question'] = get_object_or_404(Question, pk=self.cleaned_data['question'])
-        if self._user.is_anonymous():
-            self.cleaned_data['author_id'] = 1
-        else:
-            self.cleaned_data['author'] = self._user
+        # if self._user.is_anonymous():
+        #     self.cleaned_data['author_id'] = 1
+        # else:
+        #     self.cleaned_data['author'] = self._user
+
+        self.cleaned_data['author'] = self.profile_user
 
         answer = Answer(**self.cleaned_data)
         answer.save()
@@ -137,6 +147,48 @@ class LoginForm(forms.Form):
 
     def save(self):
         return self.user
+
+
+class ProfileForm(forms.Form):
+    email = forms.EmailField(label='Email', help_text='example@mail.com', max_length=30,
+                             widget=forms.EmailInput, required=False)
+    first_name = forms.CharField(label='First name', help_text='Ivan', required=False, max_length=30)
+
+    last_name = forms.CharField(label='Last name', help_text='Ivanov', required=False, max_length=30)
+
+    about_me = forms.CharField(label='About me', help_text='I want to be a cosmonaut', required=False, max_length=2000)
+
+    avatar = forms.ImageField(label='Avatar', required=False)
+                              # widget=forms.FileInput)
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if email.strip() == '':
+            raise forms.ValidationError('Email is empty', code='validation_error')
+        return email
+
+    @staticmethod
+    def load(profile):
+        form = ProfileForm(initial={
+            'email': profile.user.email,
+            "first_name": profile.user.first_name,
+            "last_name": profile.user.last_name,
+            "about_me": profile.about_me,
+        })
+        return form
+
+    def save(self, profile):
+        profile.user.email = self.cleaned_data['email']
+        profile.user.first_name = self.cleaned_data['first_name']
+        profile.user.last_name = self.cleaned_data['last_name']
+        profile.user.save()
+
+        profile.about_me = self.cleaned_data['about_me']
+        if self.cleaned_data['avatar'] is not None:
+            profile.avatar = self.cleaned_data['avatar']
+        profile.save()
+
+
 
 
 

@@ -3,15 +3,15 @@
     {% if answers %}
 
         {% for answer in answers %}
-            <div class="am-answer container-fluid">
+            <div class="am-answer container-fluid" id="answer_{{ answer.id }}">
 
             <div class="col-sm-4">
                 <div class="am-answer-user">
                     <div class="avatar">
-                        <img src="../../{{ answer.author.avatar }}" alt="..." width="50" class="img-circle">
+                        <img src="{% url 'home' %}uploads/{{ answer.author.avatar }}" alt="..." width="50" height="50" class="img-circle">
                     </div>
                     <div class="nickname">
-                        <a href="#">{{ answer.author }}</a>
+                        <a href="{% url 'profile_page' name=answer.author %}">{{ answer.author }}</a>
                     </div>
                 </div>
 

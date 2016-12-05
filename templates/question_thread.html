@@ -16,20 +16,7 @@
         {% include "blocks/answers_long.html" %}
 
     </div>
-    <div class="am-write-answer container-fluid col-xs-11">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <textarea class="form-control" rows="11" id="Answer" placeholder="Enter your answer"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class=" col-sm-10">
-                    <button type="submit" class="btn btn-default btn-lg am-btn" id="answer-button">Answer</button>
-                </div>
-            </div>
-        </form>
-    </div>
+    {% include "blocks/answer_form.html" %}
 {% endblock %}
 
 

@@ -1,0 +1,54 @@
+
+{% for e in form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissable ">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ e }}
+    </div>
+{% endfor %}
+<div class="row">
+    <form class="form-horizontal" method="POST" action="{% url 'profile_edit' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field != form.avatar %}
+                <div class="form-group
+                    {% if field.errors %} has-error{% endif %}">
+
+                    <label class="col-sm-3 control-label">
+
+                        {{ field.label }}
+
+                    </label>
+                    <div class="col-sm-9 controls">
+
+                        {% for error in field.errors %}
+
+                            <span class="error_field">{{ error }}</span>
+
+                        {% endfor %}
+
+                        {% include "widgets/input.html" %}
+
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div class="form-group">
+            <label for="exampleInputFile" class="control-label col-sm-3">Avatar</label>
+            <div class="col-sm-9 controls">
+                {% for error in form.avatar.errors %}
+
+                            <p class="error_field">{{ error }}</p>
+
+                        {% endfor %}
+                <input type="file" title="Choose img" name="avatar">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-3">
+                <button type="submit" id="reg-btn" class="am-btn btn btn-default btn-lg" >Save</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,48 @@
+<div class=" col-sm-3">
+    <img src="{% url 'home' %}uploads/{{ profile.avatar }}" alt="..." width="100" height="100" class="img-circle">
+</div>
+
+<div class="col-sm-9">
+    <span id="am-profile-login">{{ profile.user.username }}</span>
+</div>
+<div id="am-profile-topic">
+<h2 >Information</h2>
+</div>
+{% if profile.user == request.user %}
+<div class="row am-profile-fields">
+    <div class="col-sm-3">
+        <span>Email</span>
+    </div>
+    <div class="col-sm-9">
+        <span>{{ profile.user.email }}</span>
+    </div>
+</div>
+{% endif %}
+<div class="row am-profile-fields">
+    <div class="col-sm-3">
+        <span>First name</span>
+    </div>
+    <div class="col-sm-9">
+        <span>{{ profile.user.first_name }}</span>
+    </div>
+</div>
+<div class="row am-profile-fields">
+    <div class="col-sm-3">
+        <span>Last name</span>
+    </div>
+    <div class="col-sm-9">
+        <span>{{ profile.user.last_name }}</span>
+    </div>
+</div>
+
+<div class="row am-profile-fields">
+    <div class="col-sm-3">
+        <span>About Me</span>
+    </div>
+    <div class="col-sm-9">
+        <span>{{ profile.about_me }}</span>
+    </div>
+</div>
+{% if profile.user == request.user %}
+    <a href="{% url 'profile_edit' %}" class="am-ask-btn am-profile-edit-btn btn btn-lg btn-default">Edit</a>
+{% endif %}
