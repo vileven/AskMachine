@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404
 
 from django.db import models
 
@@ -24,6 +25,11 @@ class ProfileManager(models.Manager):
         if user.is_anonymous():
             return None
         return self.get(user=user)
+
+    def profile_str(self, username):
+        user = get_object_or_404(User, username=username)
+        return self.get_profile(user)
+
 
 
 class Profile(models.Model):
